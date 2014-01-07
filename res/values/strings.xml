@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Phonalyzing</string>
+    <string name="app_name">Phone</string>
     <string name="action_settings">Settings</string>
-    <string name="myphone">Phonalyzing"</string>
-    <string name="tab1">概览</string>
-    <string name="tab2">趋势</string>
-    <string name="tab3">分析</string>
-    <string name="tab4">历史</string>
-    <string name="phoneout">拨出电话:"</string>
-    <string name="phonein">呼入电话:"</string>
-    <string name="smsout">发出短信:"</string>
-    <string name="smsin">接收短信:"</string>
-
+    <string name="title_section1">概览</string>
+    <string name="title_section2">趋势</string>
+    <string name="title_section3">分析</string>
+    <string name="title_section4">历史</string>
+    <string name="thisweek">本周</string>
 </resources>

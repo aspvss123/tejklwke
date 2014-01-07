@@ -122,7 +122,7 @@ public class MainActivity extends FragmentActivity implements
 			Bundle args = new Bundle();
 			switch(position) {
 			case 0:
-				args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, R.string.thisweek);
+				args.putString(DummySectionFragment.ARG_SECTION_NUMBER, getString(R.string.thisweek));
 				fragment.setArguments(args);
 				return fragment;
 			case 1:
@@ -185,8 +185,8 @@ public class MainActivity extends FragmentActivity implements
 					container, false);
 			TextView dummyTextView = (TextView) rootView
 					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			dummyTextView.setText(getArguments().getString(
+					ARG_SECTION_NUMBER));
 			return rootView;
 		}
 	}

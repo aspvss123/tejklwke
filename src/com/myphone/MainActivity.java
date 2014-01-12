@@ -1,20 +1,22 @@
 package com.myphone;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.CallLog;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -122,7 +124,26 @@ public class MainActivity extends FragmentActivity implements
 			Bundle args = new Bundle();
 			switch(position) {
 			case 0:
-				args.putString(DummySectionFragment.ARG_SECTION_NUMBER, getString(R.string.thisweek));
+				ContentResolver cr = getContentResolver();
+				final Cursor cursor = cr.query(CallLog.Calls.CONTENT_URI, 
+						new String[]{CallLog.Calls.NUMBER,CallLog.Calls.CACHED_NAME,CallLog.Calls.TYPE, CallLog.Calls.DATE}, null, null,CallLog.Calls.DEFAULT_SORT_ORDER);
+				String str = new String();
+				String str2 = new String();
+				String str3 = new String();
+				int type;
+				Date date = new Date();
+				for (int i = 0; i < cursor.getCount(); i++) {  
+					  
+					cursor.moveToPosition(i);
+					str = cursor.getString(0);
+					str2 = cursor.getString(1);
+					str3 = str3 + str2;
+					type = cursor.getInt(2);
+					SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		            date = new Date(Long.parseLong(cursor.getString(3)));
+		            String time = sfd.format(date);
+				}
+				args.putString(DummySectionFragment.ARG_SECTION_NUMBER, str3);
 				fragment.setArguments(args);
 				return fragment;
 			case 1:

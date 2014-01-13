@@ -143,7 +143,7 @@ public class MainActivity extends FragmentActivity implements
 					str3 = str3 + str2;
 					type = cursor.getInt(2);
 					
-					if(type==2){
+					if(type==2) {
 						duration_out+=cursor.getInt(4);
 					}
 					SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -213,7 +213,7 @@ public class MainActivity extends FragmentActivity implements
 			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
 					container, false);
 			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
+					.findViewById(R.id.incoming);
 			dummyTextView.setText(getArguments().getString(
 					ARG_SECTION_NUMBER));
 			return rootView;

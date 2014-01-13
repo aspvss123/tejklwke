@@ -14,5 +14,27 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
         android:textSize="80sp"
-        android:fontFamily="Roboto" />
+        android:fontFamily="Roboto" 
+        android:text="@string/thisweek"/>
+
+    <TextView
+        android:id="@+id/incoming_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/section_label"
+        android:layout_below="@+id/section_label"
+        android:layout_marginTop="54dp"
+        android:text="@string/incoming_call"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/incoming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/incoming_call"
+        android:layout_alignBottom="@+id/incoming_call"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/incoming_call"
+        android:textSize="50sp" />
+      
 </RelativeLayout>

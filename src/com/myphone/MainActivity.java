@@ -10,6 +10,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.CallLog;
+import android.provider.CallLog.Calls;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -126,11 +127,13 @@ public class MainActivity extends FragmentActivity implements
 			case 0:
 				ContentResolver cr = getContentResolver();
 				final Cursor cursor = cr.query(CallLog.Calls.CONTENT_URI, 
-						new String[]{CallLog.Calls.NUMBER,CallLog.Calls.CACHED_NAME,CallLog.Calls.TYPE, CallLog.Calls.DATE}, null, null,CallLog.Calls.DEFAULT_SORT_ORDER);
+						new String[]{CallLog.Calls.NUMBER,CallLog.Calls.CACHED_NAME,CallLog.Calls.TYPE, CallLog.Calls.DATE, CallLog.Calls.DURATION}, null, null,CallLog.Calls.DEFAULT_SORT_ORDER);
 				String str = new String();
 				String str2 = new String();
 				String str3 = new String();
+				String str4 = new String();
 				int type;
+				int duration_out = 0;
 				Date date = new Date();
 				for (int i = 0; i < cursor.getCount(); i++) {  
 					  
@@ -139,11 +142,16 @@ public class MainActivity extends FragmentActivity implements
 					str2 = cursor.getString(1);
 					str3 = str3 + str2;
 					type = cursor.getInt(2);
+					
+					if(type==2){
+						duration_out+=cursor.getInt(4);
+					}
 					SimpleDateFormat sfd = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+					/*DateFormat sff = SimpleDateFormat.getDateInstance();*/
 		            date = new Date(Long.parseLong(cursor.getString(3)));
 		            String time = sfd.format(date);
 				}
-				args.putString(DummySectionFragment.ARG_SECTION_NUMBER, str3);
+				args.putString(DummySectionFragment.ARG_SECTION_NUMBER, Integer.toString(duration_out));
 				fragment.setArguments(args);
 				return fragment;
 			case 1:
